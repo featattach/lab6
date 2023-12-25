@@ -9,21 +9,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "STUDENTS")
-
-
-public class Student {
+@Table(name = "DISCIPLINES")
+public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
-    @Column(name="name")
-    private String name;
-    @Column(name = "surname")
-    private String surname;
-    @Column(name = "faculty")
-    private String faculty;
-    @Column(name = "age")
-    private int age;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
 }
