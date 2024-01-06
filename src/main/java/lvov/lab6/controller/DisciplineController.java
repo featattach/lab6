@@ -24,12 +24,13 @@ public class DisciplineController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Discipline> getDiscipline(@PathVariable("id") int id) {
+    public ResponseEntity<Object> getDiscipline(@PathVariable("id") int id) {
         Discipline discipline = disciplineService.getDiscipline(id);
         if (discipline != null) {
             return ResponseEntity.ok(discipline);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            String errorMessage = "Учебная дисциплина с id " + id + " не найдена";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Response(errorMessage));
         }
     }
 

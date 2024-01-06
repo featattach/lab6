@@ -23,12 +23,12 @@ public class MyController {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable("id") int id) {
+    public ResponseEntity<Object> getStudent(@PathVariable("id") int id) {
         Student student = studentService.getStudent(id);
         if (student != null) {
             return ResponseEntity.ok(student);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Студент с id " + id + " не найден");
         }
     }
     @PostMapping("/students")

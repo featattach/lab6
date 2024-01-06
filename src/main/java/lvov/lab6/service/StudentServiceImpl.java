@@ -1,5 +1,6 @@
 package lvov.lab6.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lvov.lab6.dao.StudentDAO;
 import lvov.lab6.dao.StudentDAOImpl;
@@ -34,8 +35,13 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     @Transactional
-    public void deleteStudent(int id){
-        studentDAO.deleteStudent(id);
+    public void deleteStudent(int id) {
+        Student student = studentDAO.getStudent(id);
+        if (student != null) {
+            studentDAO.deleteStudent(id);
+        } else {
+            throw new EntityNotFoundException("Студент с id " + id + " не найден");
+        }
     }
 
 }
